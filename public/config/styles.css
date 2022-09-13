@@ -140,7 +140,7 @@ button:disabled{
   text-shadow: none;
 
   overflow: hidden;
-  position: center;
+  position: relative;
 }
 
 
@@ -177,7 +177,7 @@ button:disabled{
   height: 100%;
   float: left;
 
-  position: center;
+  position: relative;
 
   font-size: 48px;
   font-weight: bold;
