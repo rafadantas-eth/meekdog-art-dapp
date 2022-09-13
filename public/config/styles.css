@@ -108,8 +108,8 @@ button:disabled{
 }
 
 .logo { 
-  width:40px;
-  height:40px;
+  width:120px;
+  height:22px;
   margin: 10px 0;
   background-image:url("../../images/meekdog-logo.png");
   background-repeat:no-repeat;
