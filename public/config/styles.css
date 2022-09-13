@@ -135,12 +135,14 @@ button:disabled{
   margin: auto;
   
   border-radius: 22px;
-
+  
   color: #000000;
   text-shadow: none;
 
   overflow: hidden;
+  position: center;
 }
+
 
 #dapp {
   border: solid 2px #ffffff;
@@ -175,7 +177,7 @@ button:disabled{
   height: 100%;
   float: left;
 
-  position: relative;
+  position: center;
 
   font-size: 48px;
   font-weight: bold;
