@@ -135,7 +135,7 @@ button:disabled{
   
   border-radius: 22px;
 
-  color: #90ff00;
+  color: #000000;
   text-shadow: none;
 
   overflow: hidden;
@@ -218,11 +218,11 @@ small {
   display: block;
   width: 100%;
   padding: 10px 0;
-  color: #EDF000;
+  color: #000000;
 }
 
 .success-message {
-  color: green;
+  color: rgb(98, 0, 255);
 }
 
 .bottom_margin {
