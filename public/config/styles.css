@@ -61,7 +61,7 @@ button {
   text-transform: capitalize;
   color: #fff;
   height: 60px;
-  background-color: #000;
+  background-color: #0600ff;
   cursor: pointer;
 }
 
@@ -129,7 +129,7 @@ button:disabled{
 }
 
 #dapp-container{
-  background-color: rgba(255, 255, 255, .3);
+  background-color: #FFF212;
   width: 400px;
   margin: auto;
   
@@ -167,7 +167,7 @@ button:disabled{
 
 #dapp-container ul {
   background-color: rgba(255, 255, 255, .5);
-  border: solid 1px white;
+  border: solid 1px #FFF212;
   border-radius: 20px;
 
   width: 43%;
