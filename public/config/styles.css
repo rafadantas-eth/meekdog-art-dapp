@@ -1,0 +1,316 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  text-shadow: 0px 1px 0px rgba(63,107,169, 0.5);
+  font-family:'Poppins', sans-serif;
+  text-align:center;
+  letter-spacing:0;
+  color:white;
+  font-size:16px;
+
+  background: #000;
+}
+
+div {
+  overflow: auto;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+header {
+  display: block;
+  font-size: 24px;
+  margin: 0 40px;
+  height: 80px;
+}
+
+ul{
+  list-style: none;
+  display: inline-block;
+  padding: 4px;
+}
+
+header li{
+  display: inline-block;
+  margin: 0 14px;
+}
+
+/*footer {
+  height: 80px;
+}
+*/
+h2 {
+  font-size: 70px;
+  margin: 50px 20px 20px 20px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+button {
+  font-family:'Poppins', sans-serif;
+  font-size: 24px;
+  text-transform: capitalize;
+  color: #fff;
+  height: 60px;
+  background-color: #000;
+  cursor: pointer;
+}
+
+button:disabled{
+  background-color: #777;
+  cursor: not-allowed;
+}
+
+.h_100 {
+  min-height: 100%;
+}
+
+.content {
+  position: relative;
+  margin: 40px;
+  padding-bottom: 40px;
+}
+
+.content p {
+  width: 70%;
+  font-size: 24px;
+  margin: 20px auto;
+}
+
+.socials {
+  display: inline-block;
+  float: right;
+  margin: 20px 0;
+}
+
+.socials a {
+  display: inline-block;
+  float: right;
+  margin-left: 24px;
+}
+
+.socials img {
+  height: 26px;
+}
+
+.socials a:last-of-type, 
+.socials.teammember a:last-of-type,
+.socials.footer a:last-of-type {
+  margin-left: 0px;
+}
+
+.logo { 
+  width:40px;
+  height:40px;
+  margin: 10px 0;
+  background-image:url("../../images/meekdog-logo.png");
+  background-repeat:no-repeat;
+  background-size:40px;
+  float: left;
+}
+
+.hero {
+  width: 100%;
+  overflow: visible;
+  margin-top: 40px;
+}
+
+.hero h4 {
+  margin-top: 40px;
+}
+
+#dapp-container{
+  background-color: rgba(255, 255, 255, .3);
+  width: 400px;
+  margin: auto;
+  
+  border-radius: 22px;
+
+  color: #EDF000;
+  text-shadow: none;
+
+  overflow: hidden;
+}
+
+#dapp {
+  border: solid 2px #EDF000;
+  border-radius: 22px;
+}
+
+#dapp-container button {
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 74px;
+  border-radius: 0 0 20px 20px;
+}
+
+#dapp-container h2 {
+  font-size: 40px;
+  margin: 14px;
+}
+
+#dapp-container h3 {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+}
+
+#dapp-container ul {
+  background-color: rgba(255, 255, 255, .5);
+  border: solid 1px white;
+  border-radius: 20px;
+
+  width: 43%;
+  height: 100%;
+  float: left;
+
+  position: relative;
+
+  font-size: 48px;
+  font-weight: bold;
+
+  margin: 0;
+}
+
+#dapp-container ul.score-right {
+  float: right;
+}
+
+#dapp-container ul .label {
+  font-size: 18px;
+
+  width: 100%;
+  min-height: 30px;
+}
+
+.mint-status, .price-status {
+  display: block;
+
+  margin: 30px auto auto;
+  width: 80%;
+  overflow: visible;
+}
+
+.price-status {
+  margin: 15px auto 30px auto;
+}
+
+.price-status p {
+  margin: 0;
+  font-size: 18px;
+}
+
+small {
+  text-transform: lowercase; 
+}
+
+.warning-message, .success-message {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  color: #EDF000;
+}
+
+.success-message {
+  color: green;
+}
+
+.bottom_margin {
+  margin-bottom: 20px;
+}
+
+.bottom_margin a:hover {
+  text-decoration: underline;
+}
+
+#contract {
+  font-size: 12px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+#contract a {
+  color: #fff;
+}
+
+#contract a:hover {
+  text-decoration: underline;
+}
+
+.current-nft {
+  width: 200px;
+  border-radius: 12px;
+  border: solid 4px white;
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  header ul {display: none;}
+
+  #dapp-container {
+    width: 316px;
+  }
+
+  .mint-status, .price-status {
+    width: 95%;
+  }
+
+  .content, header {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .content p {
+    width: auto;
+  }
+} 
+
+h4.nft-name {
+  margin: 0 0 10px 0;
+}
+
+
+/* Spinner */
+
+.spinner-container {
+  /*width: 100%;*/
+  /*height: 40px;*/
+  /*z-index: 99999;*/
+  text-align: center;
+  /*border: solid red;*/
+  margin-top: 20px;
+  overflow: visible;
+}
+.spinner {
+  margin: auto;
+  border: 2px solid #EDF000; 
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  border-radius: 50%;
+  border-right: 2px solid #000;
+  animation-name: spin;
+  animation-duration: 900ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.53, 0.21, 0.29, 0.67);
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { -webkit-transform: rotate(0deg);}
+  100% { -webkit-transform: rotate(360deg); }
+}

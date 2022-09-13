@@ -1,0 +1,13 @@
+{
+  "CONTRACT_ADDRESS": "0xbF4C805aEe2d811d6b9A1b0EfE7CA527f231Ed41",
+  "NETWORK": {
+    "NAME": "Polygon",
+    "SYMBOL": "Matic",
+    "ID": 137
+  },
+  "COLLECTION_NAME": "Meekdog Art",
+  "GAS_LIMIT": 1000000,
+  
+  "CURRENT_ID":3,
+  "CURRENT_NFT_NAME":"Meekdog"
+}
