@@ -108,8 +108,8 @@ button:disabled{
 }
 
 .logo { 
-  width:120px;
-  height:22px;
+  width:135px;
+  height:25px;
   margin: 10px 0;
   background-image:url("../../images/meekdog-logo.png");
   background-repeat:no-repeat;
@@ -134,14 +134,14 @@ button:disabled{
   
   border-radius: 22px;
 
-  color: #EDF000;
+  color: #90ff00;
   text-shadow: none;
 
   overflow: hidden;
 }
 
 #dapp {
-  border: solid 2px #EDF000;
+  border: solid 2px #90ff00;
   border-radius: 22px;
 }
 
