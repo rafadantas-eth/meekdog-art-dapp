@@ -12,6 +12,7 @@ function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
+  const [currentTokenID, setCurrentTokenID] = useState(0);
 
   const [warningFeedback, setWarningFeedback] = useState(``);
   const [successFeedback, setSuccessFeedback] = useState(``);
@@ -25,6 +26,7 @@ function App() {
 
   const [displayPrice, setDisplayPrice] = useState(`0 MATIC`);  
   const [mintPrice, setMintPrice] = useState(0);
+
   
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
@@ -47,6 +49,13 @@ function App() {
       setWarningFeedback(``);
     }, 5000);
   }
+
+  const getCurrentTokenID = () => {
+    blockchain.smartContract.methods.currentTokenID().call().then((receipt) => {
+      setCurrentTokenID (receipt);
+      console.log("Current Token ID: " + receipt);
+    });    
+  } 
 
   const getSaleState = () => {
     blockchain.smartContract.methods.paused().call().then((receipt) => {
@@ -144,6 +153,9 @@ function App() {
     if (blockchain.account !== "" && blockchain.account !== undefined && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
 
+      // Get actual token
+      getCurrentTokenID();
+
       // Check if sale and whitelist are open
       getSaleState();
       
@@ -212,7 +224,7 @@ function App() {
 
   // OKOKOKOKOKOKOKOKOK
   // Check if Mint is not Open YET
-  if(!mintLive){
+  if(currentTokenID == 0){
     return (
           <>
             <div id="dapp" class="closed">
