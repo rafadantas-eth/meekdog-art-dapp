@@ -16,7 +16,7 @@ function App() {
   const [warningFeedback, setWarningFeedback] = useState(``);
   const [successFeedback, setSuccessFeedback] = useState(``);
 
-  const [mintLive, setMintLive] = useState(false);
+  // const [mintLive, setMintLive] = useState(false);
   const [whitelisted, setWhitelisted] = useState(false);
 
   const [claimingNft, setClaimingNft] = useState(false);
@@ -25,6 +25,8 @@ function App() {
 
   const [displayPrice, setDisplayPrice] = useState(`0 MATIC`);  
   const [mintPrice, setMintPrice] = useState(0);
+
+  const [currentTokenID, setCurrentTokenID] = useState(0);
   
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
@@ -48,16 +50,10 @@ function App() {
     }, 5000);
   }
 
-  const getSaleState = () => {
-    blockchain.smartContract.methods.paused().call().then((receipt) => {
-      setMintLive (!receipt);
-      console.log("Mint paused: " + receipt);
-    });    
-  }
-
+  
   const getTokenPrice = () => {
     blockchain.smartContract.methods.tokenPrice().call().then((receipt) => {
-      console.log("🤑🤑 Token Price: " + receipt);
+      console.log("🤑 Token Price: " + receipt);
       
       // Set display price
       setDisplayPrice(receipt == 0 ? "Free" : Web3B.utils.fromWei(receipt, 'ether') + " MATIC + Gas");
@@ -68,10 +64,8 @@ function App() {
   }
 
   const checkWhitelistForAddress = () => {
-    console.log ("🔥 Retriving Whitelist Status for ID: " + String(CONFIG.CURRENT_ID));
-    
     blockchain.smartContract.methods.isAddressWhitelistedForTokenId(blockchain.account, CONFIG.CURRENT_ID).call().then((receipt) => {
-      console.log("🔥🔥 Whitelist for token: " + receipt);
+      console.log("🔥 Whitelist for token: " + receipt);
       
       // Set mint price
       setWhitelisted (receipt);
@@ -79,15 +73,23 @@ function App() {
   }
 
   const getTokenBalanceForAddress = () => {
-    console.log ("⚫️ Retriving Token Balance");
-
     blockchain.smartContract.methods.balanceOf(blockchain.account, CONFIG.CURRENT_ID).call().then((receipt) => {
-      console.log("⚫️⚫️ Token Balance: " + receipt);
+      console.log("⚫️ Token Balance: " + receipt);
       
       // Set Mints done
       setTokenBalance (receipt);
     });
   }
+
+  const getCurrentTokenID = () => {
+     blockchain.smartContract.methods.currentTokenID().call().then((receipt) => {
+      if(parseInt(receipt)){
+        setCurrentTokenID (receipt);
+      }
+       
+       console.log("🆔 Current Token ID: " + parseInt(receipt));
+     });    
+   } 
 
 
 // Mint
@@ -120,7 +122,7 @@ function App() {
         getData();
       })
       .then((receipt) => {
-        setSuccessFeedback(`👻 Boooooo Yeeeeaaah!`);
+        setSuccessFeedback(`Yeeeeaaah!`);
         setWarningFeedback(``);
         removefeedback();
 
@@ -134,27 +136,14 @@ function App() {
   };
 
 
-// Checa quantos WL tem disponível
-// Checa quantos WL já mintou
-  // Checa se ainda tem Wl após o mint
-  // Checa o preço antes de cada mint
-
-
   const getData = () => {
     if (blockchain.account !== "" && blockchain.account !== undefined && blockchain.smartContract !== null) {
-      dispatch(fetchData(blockchain.account));
+      dispatch(fetchData(blockchain.account));  // Connect to Account
 
-      // Check if sale and whitelist are open
-      getSaleState();
-      
-      // get whitelist total
-      checkWhitelistForAddress();
-
-      // get token price
-      getTokenPrice();
-
-      // get mint count
-      getTokenBalanceForAddress();
+      getCurrentTokenID();          // Get actual token
+      checkWhitelistForAddress();   // get whitelist total
+      getTokenPrice();              // get token price
+      getTokenBalanceForAddress();  // get mint count
     }
   };
 
@@ -178,7 +167,6 @@ function App() {
   }, [blockchain.account]);
 
 
-  // OKOKOKOKOKOKOKOKOK
   // Check if wallet is connected
   if(!blockchain.account || blockchain.account === undefined || blockchain.account === "" || blockchain.smartContract === null) {
     return (
@@ -210,9 +198,8 @@ function App() {
     );
   }
 
-  // OKOKOKOKOKOKOKOKOK
   // Check if Mint is not Open YET
-  if(!mintLive){
+  if(currentTokenID == 0) {
     return (
           <>
             <div id="dapp" class="closed">
@@ -230,7 +217,6 @@ function App() {
       );
   }
 
-  // OKOKOKOKOKOKOKOKOK
   if(claimingNft) {
     return (
           <>
@@ -250,7 +236,6 @@ function App() {
       );
   }
 
-  // OKOKOKOKOKOKOKOKOK
   if(minted || parseInt(tokenBalance)) {
     return (
           <>
@@ -270,8 +255,7 @@ function App() {
       );
   }
 
-  // OKOKOKOKOKOKOKOKOK
-  if(mintLive) {
+  if(currentTokenID != 0) {
       return (
           <>
             <div id="dapp" class="closed">
