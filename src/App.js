@@ -28,6 +28,11 @@ function App() {
 
   const [currentTokenID, setCurrentTokenID] = useState(0);
   
+
+  const [donating, setDonating] = useState(false);
+  const [donationPrice, setDonationPrice] = useState(0);
+
+
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     NETWORK: {
@@ -273,17 +278,30 @@ function App() {
                     </div>)
               }
 
-
+              
               {whitelisted == false 
               ?(<p class="warning-message">This wallet is <strong>not</strong> whitelisted<br />for the current {CONFIG.CURRENT_NFT_NAME} PFP</p>)
-              :(<button disabled= { claimingNft ? 1 : 0 }
+              :(
+              
+                <>
+                <div class="donation">
+                {donating == true ? (
+                  <input id="donation-value" placeholder="Enter Matic Ammount" type="number" min="0" onChange={e => handleDonation(e.target.value)}/>
+                ):(
+                  <button onClick= {(e) => {setDonating(true);}} >I want to donate to help the project</button>
+                )}
+                </div>
+              
+              <button disabled= { claimingNft ? 1 : 0 }
                     onClick={(e) => {
                       e.preventDefault();
                       claimNFTs();
                     }}
                   > 
                   {claimingNft ? "Hunting..." : "Mint your Meekdog Art"}
-              </button>)}
+              </button>
+              </>
+              )}
 
             </div>
 
